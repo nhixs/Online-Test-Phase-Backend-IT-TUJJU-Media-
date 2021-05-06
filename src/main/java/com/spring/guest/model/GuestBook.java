@@ -6,11 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "data_tamu")
 public class GuestBook {
-	
+
 	private Long id;
 	private String name;
 	private String noKtp;
@@ -19,27 +20,12 @@ public class GuestBook {
 	private String gender;
 	private String address;
 	private String destination;
-	
+	@Column(nullable = true, length = 64)
+	private String photos;
+
 	public GuestBook() {
-		
+
 	}
-	
-	
-
-	public GuestBook(Long id, String name, String noKtp, String email, int age, String gender, String address,
-			String destination, String photos) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.noKtp = noKtp;
-		this.email = email;
-		this.age = age;
-		this.gender = gender;
-		this.address = address;
-		this.destination = destination;
-	}
-
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,6 +91,21 @@ public class GuestBook {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
-	}	
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
 	
+	 @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/guest-photos/" + id + "/" + photos;
+	    }
+
 }

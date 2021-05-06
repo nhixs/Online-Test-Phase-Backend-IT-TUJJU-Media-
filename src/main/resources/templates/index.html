@@ -9,8 +9,15 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
 
+<style>
+.table td, .table th {
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,12 +45,17 @@
 
 				<div align="center">
 
-					
+
 					<form th:action="@{/}" class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" name="keyword" id="keyword" size="25"th:value="${keyword}" required /> 
-							<input class="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit" value="Search" /> 
-							<input class="btn btn-outline-warning mr-5 my-2 my-sm-0" type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-					<a class="btn btn-primary" href="/new"><i class="fas fa-plus"></i> New Guest</a>
+						<input class="form-control mr-sm-2" placeholder="Search"
+							aria-label="Search" type="text" name="keyword" id="keyword"
+							size="25" th:value="${keyword}" required /> <input
+							class="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit"
+							value="Search" /> <input
+							class="btn btn-outline-warning mr-5 my-2 my-sm-0" type="button"
+							value="Clear" id="btnClear" onclick="clearSearch()" /> <a
+							class="btn btn-primary" href="/new"><i class="fas fa-plus"></i>
+							New Guest</a>
 					</form>
 					<br> <br>
 					<table class="table">
@@ -57,6 +69,7 @@
 								<th>Guest Gender</th>
 								<th>Guest Address</th>
 								<th>Guest Destination</th>
+								<th>Photo</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,6 +82,8 @@
 								<td th:text="${guest.gender}"></td>
 								<td th:text="${guest.address}"></td>
 								<td th:text="${guest.destination}"></td>
+								<td><img th:src="@{${guest.photosImagePath}}"
+									style="max-width: 100px; max-height: 100px;" /></td>
 							</tr>
 						</tbody>
 					</table>

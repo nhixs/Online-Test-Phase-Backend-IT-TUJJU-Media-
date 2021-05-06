@@ -25,8 +25,8 @@ public class GuestBookService {
 		return repo.findAll();
 	}
 	
-	public void save(GuestBook guestBook) { //method to insert data in the database
-		repo.save(guestBook);
+	public GuestBook save(GuestBook guestBook) { //method to insert data in the database
+		return repo.save(guestBook);
 	}
 	
 	public GuestBook get(long id) {
